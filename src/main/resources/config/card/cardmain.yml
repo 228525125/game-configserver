@@ -1,0 +1,49 @@
+example.property: "I AM THE DEFAULT"
+#Mongodb
+spring:
+  data:
+    mongodb:
+        host: localhost
+        port: 27017
+        username: admin
+        password: 123456
+        database: card
+        # 用户认证的数据库
+        #authentication-database: admin
+        # 连接池大小
+        connections-per-host: 10
+        # 最小连接池大小
+        min-connections-per-host: 10
+
+#Setting logging levels
+logging:
+  level:
+    com.netflix: WARN
+    org.springframework.web: WARN
+    org.cx.game: DEBUG
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  
+#hystrix熔断超时
+hystrix:
+  command:
+    default:  #default全局有效，service id指定应用有效
+      execution:
+        timeout:
+          enabled: true  #是否开启超时熔断
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2000 #断路器超时时间，默认1000ms
+
+#OAuth2
+#security:
+#  oauth2:
+#   resource:
+#      userInfoUri: http://localhost:8901/user

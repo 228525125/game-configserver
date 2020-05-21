@@ -1,0 +1,49 @@
+# 内嵌tomcat线程最大数量，默认是200； 内存优化
+server.tomcat.max-threads: 10
+
+#zuul.ignored-services: "*"     #屏蔽服务发现的映射
+zuul.prefix:  /api
+#zuul.routes.userserver: /user/**
+#zuul.routes.towermain: /tm/**
+#zuul.routes.towerplay: /tp/**
+#zuul.routes.authenticationservice: /auth/**
+#ribbon.eureka.enabled: false
+#HTTP头部信息黑名单，Cookie等信息将不会传递到下游
+zuul.sensitiveHeaders: Cookie,Set-Cookie
+#zuul.debug.request: true
+
+#路由方式为url时，此超时配置生效
+zuul.host.connect-timeout-millis: 10000
+zuul.host.socket-timeout-millis: 10000
+
+#路由方式为serviceId时，ribbon负载均衡超时生效，值小于zuul超时
+ribbon.ReadTimeout: 5000
+ribbon.ConnectTimeout: 5000
+
+#zuul使用Hystrix来帮助防止长时间运行的服务调用影响服务网关的性能。默认情况，对于任何超过1s时间的请求，zuul将终止并返回500错误
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+#对特定服务进行设置超时
+#hystrix.command.towermain.execution.isolation.thread.timeoutInMilliseconds: 5000
+#towermain.ribbon.ReadTimeout: 5000
+
+#Setting logging levels
+logging:
+    level:
+      com.netflix: WARN
+      org.springframework.web: WARN
+      org.cx.game: DEBUG
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://172.20.1.3:8761/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: routes,env
