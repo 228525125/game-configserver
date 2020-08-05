@@ -1,4 +1,11 @@
-example.property: "I AM THE DEFAULT"
+#Game
+game:
+  card:
+    operator-interval: 2
+    match-timeout: 60
+    min-deck-size: 10
+    max-deck-size: 30
+    
 #Mongodb
 spring:
   data:

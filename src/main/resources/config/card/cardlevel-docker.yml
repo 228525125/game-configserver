@@ -1,10 +1,3 @@
-#服务器执行一次匹配的间隔时间
-host.match.interval: 5
-#匹配超时，会话被清理掉
-host.match.timeout: 300
-#超过匹配时间，系统自动匹配AI
-host.match.auto: 300
-
 # 内嵌tomcat线程最大数量，默认是200； 内存优化
 server.tomcat.max-threads: 10
 
@@ -30,7 +23,7 @@ spring.redis.timeout: 5000ms
 #配置缓存相关
 cache.default.expire-time: 200
 cache.host.expire-time: 180
-cache.host.name: hosts
+cache.host.name: levels
 
 #Setting logging levels
 logging:
